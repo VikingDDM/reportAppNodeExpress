@@ -21,14 +21,14 @@ signupandinValidate = (req, res, next) => {
 signupValidate = (req, res, next) => {
   User.findOne({
     email: req.body.email,
+    name: req.body.name,
   }).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
     }
-
     if (user) {
-      res.status(400).send({ message: "Failed! Email is already in use!" });
+      res.status(400).send({ message: "Failed! user is already exist" });
       return;
     }
     next();
