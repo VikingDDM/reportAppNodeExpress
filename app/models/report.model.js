@@ -5,8 +5,8 @@ const Report = mongoose.model(
     new mongoose.Schema({
         name: String,
         content: String,
-        createDate: Date,
-        updateDate: Date
+        createdAt: String,
+        updatedAt: String
     })
 );
 

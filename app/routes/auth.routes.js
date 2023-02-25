@@ -10,7 +10,7 @@ module.exports = function (app) {
 
   app.post(
     "/api/auth/signup",
-    [signValidate.signupandinValidate, signValidate.signupValidate],
+    [signValidate.signupandinValidate, signValidate.signupemailValidate, signValidate.signupnameValidate],
     controller.signup
   );
 
@@ -28,4 +28,12 @@ module.exports = function (app) {
   app.post("/api/auth/changeemail", controller.changeemail);
 
   app.post("/api/auth/signout", controller.signout);
+  
+
+  // https://localhost:8080/all-report/:date/:name/:id
+  // const date = req.params.date
+  // const name = req.params.name
+
+  // https://localhost:8080/all-report/2023.02.23/john/13
+
 };

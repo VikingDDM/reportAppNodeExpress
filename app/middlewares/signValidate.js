@@ -18,10 +18,10 @@ signupandinValidate = (req, res, next) => {
   next();
 };
 
-signupValidate = (req, res, next) => {
+signupemailValidate = (req, res, next) => {
   User.findOne({
     email: req.body.email,
-    name: req.body.name,
+    
   }).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
@@ -35,9 +35,27 @@ signupValidate = (req, res, next) => {
   });
 };
 
+signupnameValidate = (req, res, next) => {
+  User.findOne({
+    name: req.body.name,
+    
+  }).exec((err, data) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+    if (data) {
+      res.status(400).send({ message: "Failed! user is already exist" });
+      return;
+    }
+    next();
+  });
+};
+
 const signValidate = {
   signupandinValidate,
-  signupValidate,
+  signupemailValidate,
+  signupnameValidate
 };
 
 module.exports = signValidate;

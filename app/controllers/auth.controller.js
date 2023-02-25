@@ -5,6 +5,7 @@ const User = db.user;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 const mailsend = require("../utils/mailsend");
+const { user } = require("../models");
 
 
 
@@ -44,7 +45,8 @@ exports.signin = (req, res) => {
     if (!passwordIsValid) {
       return res.status(401).send({ message: "Invalid Password!" });
     }
-
+    
+    
     var token = jwt.sign({ id: user._id }, config.secret, {
       expiresIn: 86400, // 24 hours
     });
